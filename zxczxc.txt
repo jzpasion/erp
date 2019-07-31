@@ -1,0 +1,4 @@
+    var found = _.filter(
+      this.state.users,
+      _.matches({ USERNAME: this.state.uname, PASSWORD: this.state.pword })
+    );
