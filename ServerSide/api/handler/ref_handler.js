@@ -16,6 +16,7 @@ exports.getAllRef = function(cb) {
                     REF_LOG.REF_CONTACT,
                     REF_LOG.REF_EMAIL,
                     REF_LOG.POSITION,
+                    STATUS,
                     REF_LOG.DATE 
                     FROM REF_LOG `;
   con.query(sql, function(err, result) {

@@ -51,12 +51,7 @@ io.on("connection", socket => {
   getUsers(socket);
 
   socket.on("GetRefer", () => {
-    if (interval) {
-      clearInterval(interval);
-    }
-    interval = setInterval(() => {
-      getUsers(socket), 2000;
-    });
+    getUsers(socket);
   });
 
   socket.on("AddRefer", function(
