@@ -52,4 +52,20 @@ router.post("/addRefer", (req, res) => {
   }
 });
 
+router.put("/updateStatus/:id", (req, res) => {
+  const id = req.params.id;
+  const status = req.body.status;
+  if (id && status) {
+    handler.EditStatus(status, id, function(err, data) {
+      if (err) {
+        res.status(500).json({ error: err });
+      } else {
+        res.status(200).json(data);
+      }
+    });
+  } else {
+    res.status(500).json({ message: "invalid parameters!" });
+  }
+});
+
 module.exports = router;

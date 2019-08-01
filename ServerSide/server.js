@@ -44,7 +44,20 @@ const AddRefs = async (
   }
 };
 
-let interval;
+const UpdateStats = async (id, status) => {
+  try {
+    const res = await axios.put(
+      "http://192.168.1.40:8080/api/refs/updateStatus/" + id,
+      {
+        status: status
+      }
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 io.on("connection", socket => {
   console.log("New Client");
 
@@ -76,6 +89,11 @@ io.on("connection", socket => {
     socket.broadcast.emit("change_data", getUsers(socket));
   });
 
+  socket.on("UpdateStatus", function(id, status) {
+    UpdateStats(id, status);
+    socket.emit("change_data", getUsers(socket));
+    socket.broadcast.emit("change_data", getUsers(socket));
+  });
   socket.on("disconnect", () => {
     console.log("Client Disconnected");
   });

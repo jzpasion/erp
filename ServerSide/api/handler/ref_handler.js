@@ -67,3 +67,14 @@ exports.AddRef = function(
     }
   );
 };
+
+exports.EditStatus = function(status, id, cb) {
+  const sql = `UPDATE REF_LOG SET STATUS =? WHERE REF_ID = ?`;
+  con.query(sql, [status, id], function(err, result) {
+    if (err) {
+      cb({ status: "failed", error: err }, null);
+    } else {
+      cb(null, result);
+    }
+  });
+};
