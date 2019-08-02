@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2019 at 10:36 AM
+-- Generation Time: Aug 02, 2019 at 10:14 AM
 -- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,8 +58,17 @@ INSERT INTO `emp_table` (`EMP_ID`, `EMP_NO`, `LAST_NAME`, `FIRST_NAME`, `POSITIO
 CREATE TABLE `position_table` (
   `POS_ID` int(11) NOT NULL,
   `POSITION` varchar(100) NOT NULL,
-  `CANDIDATES` int(11) NOT NULL
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `SLOT` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `position_table`
+--
+
+INSERT INTO `position_table` (`POS_ID`, `POSITION`, `DESCRIPTION`, `SLOT`) VALUES
+(1, 'HR Assistant', '  2 to 3 years HR assistant must have a experience of liaison Papers for government and basic skills for admin task.', 1),
+(2, 'Accounting', ' 2 to 3 years of experience in Accounting and Payroll and must be a College graduate.', 2);
 
 -- --------------------------------------------------------
 
@@ -69,14 +78,31 @@ CREATE TABLE `position_table` (
 
 CREATE TABLE `ref_log` (
   `REF_ID` int(11) NOT NULL,
-  `EMP_ID` int(11) NOT NULL,
-  `REF_NAME` varchar(50) NOT NULL,
+  `EMP_NAME` varchar(100) NOT NULL,
+  `REF_LAST_NAME` varchar(50) NOT NULL,
+  `REF_FIRST_NAME` varchar(50) NOT NULL,
   `REF_ADDRESS` varchar(50) NOT NULL,
-  `REF_CONTACT` int(11) NOT NULL,
-  `POSITION` varchar(50) NOT NULL,
-  `STATUS_ID` int(11) NOT NULL,
+  `REF_CONTACT` varchar(15) NOT NULL,
+  `REF_EMAIL` varchar(100) NOT NULL,
+  `POSITION` varchar(50) DEFAULT NULL,
+  `STATUS` varchar(50) DEFAULT NULL,
   `DATE` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ref_log`
+--
+
+INSERT INTO `ref_log` (`REF_ID`, `EMP_NAME`, `REF_LAST_NAME`, `REF_FIRST_NAME`, `REF_ADDRESS`, `REF_CONTACT`, `REF_EMAIL`, `POSITION`, `STATUS`, `DATE`) VALUES
+(4, 'A.Zablan', 'DELA CRUZ', 'JUAN', 'San Fernando City Pampanga', '+63 955 123 456', 'juan.delacruz@gmail.com', 'HR Assistant', 'Reviewed', '2019-07-30'),
+(5, 'me', 'Test Lname', 'Test Fname', 'test Angeles City', '09123456789', 'test@test.test', 'Accounting', 'Pending Interview', '2019-07-31'),
+(6, 'Test', 'Test 2', 'Test 2', 'San Fernando City ', '092323232', 'test2@test@.test2', 'HR Assistant', 'Reviewed', '2019-07-31'),
+(7, 'Juan Dela Cruz', 'Zablan', 'Adrian', 'NCR', '+63 912 345 678', 'adrian.zablan@dict.gov.ph', 'HR Assistant', 'Pending Interview', '2019-07-31'),
+(8, 'x', 'x', 'x', 'x', 'x', 'x', 'HR Assistant', 'Final Interview', '2019-07-31'),
+(9, 'XXXXXX', 'X', 'XX', 'XXXXX', 'XXX', 'XXXX', 'HR Assistant', 'Final Interview', '2019-07-31'),
+(10, 'me', 'swal', 'swal', 'City of San Fernando', '2323232', 'email@test', 'Accounting', '0', '2019-07-31'),
+(11, 'xxxxxxx', 'x', 'xx', 'xxxxxx', 'xxx', 'xxxx', 'HR Assistant', '0', '2019-07-31'),
+(12, 'yhyh', 'ad', 'sd', 'thth', 'rfrf', 'frrtgt', 'HR Assistant', 'Reviewed', '2019-07-31');
 
 -- --------------------------------------------------------
 
@@ -88,6 +114,16 @@ CREATE TABLE `status` (
   `STATUS_ID` int(11) NOT NULL,
   `STATUS` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`STATUS_ID`, `STATUS`) VALUES
+(1, 'Reviewed'),
+(2, 'Pending for Interview'),
+(3, 'Final Interview'),
+(4, 'Accepted');
 
 -- --------------------------------------------------------
 
@@ -158,19 +194,19 @@ ALTER TABLE `emp_table`
 -- AUTO_INCREMENT for table `position_table`
 --
 ALTER TABLE `position_table`
-  MODIFY `POS_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `POS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ref_log`
 --
 ALTER TABLE `ref_log`
-  MODIFY `REF_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `REF_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_table`
