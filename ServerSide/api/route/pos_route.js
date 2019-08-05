@@ -32,9 +32,25 @@ router.post("/AddPosition", (req, res) => {
   }
 });
 
-router.delete("/DeletePosition/:id", (req, res) => {
-  const id = req.params.id;
-  handler.DeletePosition(id, function(err, data) {
+router.put("/UpdateSlot/:pos", (req, res) => {
+  const pos = req.params.pos;
+  const slot = req.body.slot;
+  if (pos && slot) {
+    handler.UpdateSlot(slot, pos, function(err, data) {
+      if (err) {
+        res.status(500).json({ error: err });
+      } else {
+        res.status(200).json(data);
+      }
+    });
+  } else {
+    res.status(500).json({ message: "invalid parameters!" });
+  }
+});
+
+router.delete("/DeletePosition/:pos", (req, res) => {
+  const pos = req.params.pos;
+  handler.DeletePosition(pos, function(err, data) {
     if (err) {
       res.status(500).json({ error: err });
     } else {

@@ -30,9 +30,20 @@ exports.AddPosition = function(pos, description, slot, cb) {
   });
 };
 
-exports.DeletePosition = function(id, cb) {
-  const sql = `DELETE FROM POSITION_TABLE WHERE POS_ID = ?`;
-  con.query(sql, [id], function(err, result) {
+exports.DeletePosition = function(pos, cb) {
+  const sql = `DELETE FROM POSITION_TABLE WHERE POSITION = ?`;
+  con.query(sql, [pos], function(err, result) {
+    if (err) {
+      cb({ status: "failed", error: err }, null);
+    } else {
+      cb(null, result);
+    }
+  });
+};
+
+exports.UpdateSlot = function(slot, pos, cb) {
+  const sql = `UPDATE POSITION_TABLE SET SLOT = ? WHERE POSITION = ?`;
+  con.query(sql, [slot, pos], function(err, result) {
     if (err) {
       cb({ status: "failed", error: err }, null);
     } else {

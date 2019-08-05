@@ -35,7 +35,7 @@ const getPosition = async socket => {
 const AddPosition = async (pos, description, slot) => {
   try {
     const res = await axios.post(
-      "http://192.168.40:8080/api/refs/AddPosition",
+      "http://192.168.1.40:8080/api/position/AddPosition",
       {
         pos: pos,
         description: description,
@@ -87,10 +87,24 @@ const UpdateStats = async (id, status) => {
   }
 };
 
-const DeletePosition = async id => {
+const UpdateSlot = async (pos, slot) => {
+  try {
+    const res = await axios.put(
+      "http://192.168.1.40:8080/api/position/UpdateSlot/" + pos,
+      {
+        slot: slot
+      }
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const DeletePosition = async pos => {
   try {
     const res = await axios.delete(
-      "http://192.168.1.40:8080/api/position/DeletePosition/" + id
+      "http://192.168.1.40:8080/api/position/DeletePosition/" + pos
     );
     console.log(res);
   } catch (error) {
@@ -146,8 +160,14 @@ io.on("connection", socket => {
     socket.broadcast.emit("change_data", getUsers(socket));
   });
 
-  socket.on("DeletePosition", function(id) {
-    DeletePosition(id);
+  socket.on("UpdateSlot", function(pos, slot) {
+    UpdateSlot(pos, slot);
+    socket.emit("change_data", getPosition(socket));
+    socket.broadcast.emit("change_data", getPosition(socket));
+  });
+
+  socket.on("DeletePosition", function(pos) {
+    DeletePosition(pos);
     socket.emit("chage_data", getPosition(socket));
     socket.broadcast.emit("change_data", getPosition(socket));
   });
