@@ -78,3 +78,14 @@ exports.EditStatus = function(status, id, cb) {
     }
   });
 };
+
+exports.DeleteRef = function(id, cb) {
+  const sql = `DELETE FROM REF_LOG WHERE REF_ID = ?`;
+  con.query(sql, [id], function(err, result) {
+    if (err) {
+      cb({ status: "failed", error: err }, null);
+    } else {
+      cb(null, result);
+    }
+  });
+};

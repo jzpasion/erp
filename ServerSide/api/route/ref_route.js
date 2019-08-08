@@ -68,4 +68,15 @@ router.put("/updateStatus/:id", (req, res) => {
   }
 });
 
+router.delete("/deleteRef/:id", (req, res) => {
+  const id = req.params.id;
+  handler.DeleteRef(id, function(err, data) {
+    if (err) {
+      res.status(500).json({ error: err });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
 module.exports = router;

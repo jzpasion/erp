@@ -112,6 +112,17 @@ const DeletePosition = async pos => {
   }
 };
 
+const DeleteRef = async id => {
+  try {
+    const res = await axios.delete(
+      "http://192.168.1.40:8080/api/refs/deleteRef/" + id
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 io.on("connection", socket => {
   console.log("New Client");
 
@@ -170,6 +181,12 @@ io.on("connection", socket => {
     DeletePosition(pos);
     socket.emit("chage_data", getPosition(socket));
     socket.broadcast.emit("change_data", getPosition(socket));
+  });
+
+  socket.on("DeleteRef", function(id) {
+    DeleteRef(id);
+    socket.emit("change_data", getUsers(socket));
+    socket.broadcast.emit("change_data", getUsers(socket));
   });
 
   socket.on("disconnect", () => {
