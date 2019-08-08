@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2019 at 10:14 AM
+-- Generation Time: Aug 08, 2019 at 08:54 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -67,8 +67,11 @@ CREATE TABLE `position_table` (
 --
 
 INSERT INTO `position_table` (`POS_ID`, `POSITION`, `DESCRIPTION`, `SLOT`) VALUES
-(1, 'HR Assistant', '  2 to 3 years HR assistant must have a experience of liaison Papers for government and basic skills for admin task.', 1),
-(2, 'Accounting', ' 2 to 3 years of experience in Accounting and Payroll and must be a College graduate.', 2);
+(1, 'HR Assistant', '  2 to 3 years HR assistant must have a experience of liaison Papers for government and basic skills for admin task.', 3),
+(2, 'Accounting', ' 2 to 3 years of experience in Accounting and Payroll and must be a College graduate.', 2),
+(3, 'Marketing', ' test Description', 1),
+(4, 'Test Position', 'Test Description', 2),
+(6, 'ICT Associate', 'Must atleast 1 year experience; ndfksdhsafhdksafnsakfnsakfnsafnsafnsakfnsakfnsa\'pfjweproqwjrkwqnpofjwqtrwqpoi', 1);
 
 -- --------------------------------------------------------
 
@@ -94,15 +97,14 @@ CREATE TABLE `ref_log` (
 --
 
 INSERT INTO `ref_log` (`REF_ID`, `EMP_NAME`, `REF_LAST_NAME`, `REF_FIRST_NAME`, `REF_ADDRESS`, `REF_CONTACT`, `REF_EMAIL`, `POSITION`, `STATUS`, `DATE`) VALUES
-(4, 'A.Zablan', 'DELA CRUZ', 'JUAN', 'San Fernando City Pampanga', '+63 955 123 456', 'juan.delacruz@gmail.com', 'HR Assistant', 'Reviewed', '2019-07-30'),
-(5, 'me', 'Test Lname', 'Test Fname', 'test Angeles City', '09123456789', 'test@test.test', 'Accounting', 'Pending Interview', '2019-07-31'),
-(6, 'Test', 'Test 2', 'Test 2', 'San Fernando City ', '092323232', 'test2@test@.test2', 'HR Assistant', 'Reviewed', '2019-07-31'),
+(4, 'A.Zablan', 'DELA CRUZ', 'JUAN', 'San Fernando City Pampanga', '+63 955 123 456', 'juan.delacruz@gmail.com', 'HR Assistant', 'Hired', '2019-07-30'),
+(5, 'me', 'Test Lname', 'Test Fname', 'test Angeles City', '09123456789', 'test@test.test', 'Accounting', 'Reviewed', '2019-07-31'),
+(6, 'Test', 'Test 2', 'Test 2', 'San Fernando City ', '092323232', 'test2@test@.test2', 'HR Assistant', 'Pending Interview', '2019-07-31'),
 (7, 'Juan Dela Cruz', 'Zablan', 'Adrian', 'NCR', '+63 912 345 678', 'adrian.zablan@dict.gov.ph', 'HR Assistant', 'Pending Interview', '2019-07-31'),
 (8, 'x', 'x', 'x', 'x', 'x', 'x', 'HR Assistant', 'Final Interview', '2019-07-31'),
 (9, 'XXXXXX', 'X', 'XX', 'XXXXX', 'XXX', 'XXXX', 'HR Assistant', 'Final Interview', '2019-07-31'),
-(10, 'me', 'swal', 'swal', 'City of San Fernando', '2323232', 'email@test', 'Accounting', '0', '2019-07-31'),
-(11, 'xxxxxxx', 'x', 'xx', 'xxxxxx', 'xxx', 'xxxx', 'HR Assistant', '0', '2019-07-31'),
-(12, 'yhyh', 'ad', 'sd', 'thth', 'rfrf', 'frrtgt', 'HR Assistant', 'Reviewed', '2019-07-31');
+(11, 'xxxxxxx', 'x', 'xx', 'xxxxxx', 'xxx', 'xxxx', 'HR Assistant', 'Pending Interview', '2019-07-31'),
+(13, 'asdsd', 'azxzxc', 'xzczxc', 'zxczxc', '12321312', 'asdasdasd', 'ICT Associate', 'Reviewed', '2019-08-05');
 
 -- --------------------------------------------------------
 
@@ -194,13 +196,13 @@ ALTER TABLE `emp_table`
 -- AUTO_INCREMENT for table `position_table`
 --
 ALTER TABLE `position_table`
-  MODIFY `POS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `POS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ref_log`
 --
 ALTER TABLE `ref_log`
-  MODIFY `REF_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `REF_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `status`
